@@ -315,7 +315,8 @@ function render(){
 // ---- Debt list ----
 (function(){
   const list = document.getElementById('debtList');
-  DATA.debts.forEach(d=>{
+  const sorted = [...DATA.debts].sort((a,b)=>(b.amount ?? -1)-(a.amount ?? -1));
+  sorted.forEach(d=>{
     const unknown = d.amount===null;
     const fullySet = !unknown && d.settling>0 && d.settling>=d.amount-0.005;
     const partSet  = !unknown && d.settling>0 && !fullySet;
