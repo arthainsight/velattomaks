@@ -114,6 +114,10 @@
   .win-ico svg{width:25px;height:25px;fill:none;stroke:currentColor;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round}
   .win-v{font-family:'Fraunces',serif;font-size:1.9rem;font-weight:600;color:var(--accent);line-height:1.05;letter-spacing:-.01em}
   .win-t{font-size:.9rem;color:var(--ink-soft);margin-top:3px;max-width:24ch}
+  .win.loss{background:linear-gradient(135deg,var(--remain-soft),var(--paper-2))}
+  .win.loss .win-ico{background:var(--remain)}
+  .win.loss .win-v{color:var(--remain)}
+  .win-note{display:inline-block;margin-top:7px;font-size:.72rem;font-weight:600;padding:2px 9px;border-radius:999px;background:var(--remain-soft);color:var(--remain)}
 
   /* ---------- Chart ---------- */
   .chart-card{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);padding:28px clamp(18px,3vw,30px);box-shadow:var(--shadow)}
@@ -221,11 +225,15 @@
   </section>
 
   <section class="reveal" style="animation-delay:.12s">
-    <div class="sec-head"><h2>Voitot</h2><span class="line"></span><span class="meta">saavutetut etapit</span></div>
+    <div class="sec-head"><h2>Oikeustaistelut</h2><span class="line"></span><span class="meta">voitot, tappiot ja palautukset</span></div>
     <div class="wins">
       <div class="win">
         <div class="win-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div>
         <div><div class="win-v num" id="winCourt">—</div><div class="win-t">voitettu velka käräjäoikeudessa</div></div>
+      </div>
+      <div class="win loss">
+        <div class="win-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></div>
+        <div><div class="win-v num" id="winLoss">—</div><div class="win-t">hävitty käräjäoikeudessa</div><span class="win-note">mahdollisesti hovioikeuteen</span></div>
       </div>
       <div class="win">
         <div class="win-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 14 4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 5 5v3"/></svg></div>
@@ -257,7 +265,7 @@
 <script>
 const DATA = {
   deadline: "2027-10-13",
-  wins: { courtWins: 1, refunds: 458.71 },
+  wins: { courtWins: 1, courtLosses: 1, refunds: 458.71 },
   payments: [
     {year:2016, amount:4037.32},
     {year:2017, amount:8865.42},
@@ -387,6 +395,7 @@ function render(){
 
 // ---- Wins ----
 document.getElementById('winCourt').textContent = fi(DATA.wins.courtWins);
+document.getElementById('winLoss').textContent = fi(DATA.wins.courtLosses);
 document.getElementById('winRefund').textContent = eur(DATA.wins.refunds);
 
 document.getElementById('updated').textContent = 'Päivitetty ' + new Date().toLocaleDateString('fi-FI');
