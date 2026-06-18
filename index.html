@@ -107,6 +107,14 @@
   .stat .v.remain{color:var(--remain)}
   .stat .h{font-size:.82rem;color:var(--ink-soft);margin-top:6px}
 
+  /* ---------- Wins ---------- */
+  .wins{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+  .win{background:linear-gradient(135deg,var(--accent-soft),var(--paper-2));border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;box-shadow:var(--shadow);display:flex;align-items:center;gap:16px}
+  .win-ico{width:52px;height:52px;flex:none;border-radius:14px;background:var(--accent);color:#fff;display:grid;place-items:center}
+  .win-ico svg{width:25px;height:25px;fill:none;stroke:currentColor;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round}
+  .win-v{font-family:'Fraunces',serif;font-size:1.9rem;font-weight:600;color:var(--accent);line-height:1.05;letter-spacing:-.01em}
+  .win-t{font-size:.9rem;color:var(--ink-soft);margin-top:3px;max-width:24ch}
+
   /* ---------- Chart ---------- */
   .chart-card{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);padding:28px clamp(18px,3vw,30px);box-shadow:var(--shadow)}
   .chart{display:flex;align-items:flex-end;gap:clamp(6px,1.5vw,16px);height:240px;padding-top:20px}
@@ -212,7 +220,21 @@
     </div>
   </section>
 
-  <section class="reveal" style="animation-delay:.14s">
+  <section class="reveal" style="animation-delay:.12s">
+    <div class="sec-head"><h2>Voitot</h2><span class="line"></span><span class="meta">saavutetut etapit</span></div>
+    <div class="wins">
+      <div class="win">
+        <div class="win-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <div><div class="win-v num" id="winCourt">—</div><div class="win-t">voitettu velka käräjäoikeudessa</div></div>
+      </div>
+      <div class="win">
+        <div class="win-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 14 4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 5 5v3"/></svg></div>
+        <div><div class="win-v num" id="winRefund">—</div><div class="win-t">palautuksia saatu takaisin</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal" style="animation-delay:.16s">
     <div class="sec-head"><h2>Maksuhistoria</h2><span class="line"></span><span class="meta" id="histMeta"></span></div>
     <div class="chart-card"><div class="chart" id="chart"></div></div>
   </section>
@@ -235,6 +257,7 @@
 <script>
 const DATA = {
   deadline: "2027-10-13",
+  wins: { courtWins: 1, refunds: 458.71 },
   payments: [
     {year:2016, amount:4037.32},
     {year:2017, amount:8865.42},
@@ -361,6 +384,10 @@ function render(){
     list.appendChild(el);
   });
 })();
+
+// ---- Wins ----
+document.getElementById('winCourt').textContent = fi(DATA.wins.courtWins);
+document.getElementById('winRefund').textContent = eur(DATA.wins.refunds);
 
 document.getElementById('updated').textContent = 'Päivitetty ' + new Date().toLocaleDateString('fi-FI');
 
