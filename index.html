@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Velattomaks ennen 40 — 13.10.2027</title>
 <meta name="description" content="Tavoite: velaton ennen 40-vuotispäivää, 13.10.2027.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -40,6 +42,11 @@
   }
   .wrap{max-width:1080px;margin:0 auto;padding:clamp(28px,5vw,72px) clamp(18px,4vw,40px) 80px}
   .num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+
+  /* ---------- Brand ---------- */
+  .brand{display:flex;align-items:center;gap:11px;margin-bottom:30px}
+  .brand-mark{width:38px;height:38px;flex:none}
+  .brand-word{font-family:'Fraunces',serif;font-weight:600;font-size:1.45rem;color:var(--ink);letter-spacing:-.01em}
 
   /* ---------- Header ---------- */
   .kicker{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
@@ -174,6 +181,10 @@
 </head>
 <body>
 <div class="wrap">
+  <div class="brand reveal">
+    <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#1d2330"/><path d="M17 29 29 45 48 17" fill="none" stroke="#34a574" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="brand-word">Velattomaks</span>
+  </div>
   <header class="reveal" style="animation-delay:.02s">
     <div class="kicker">Tavoite · 13.10.2027 · 40 v.</div>
     <h1>Velattomaks ennen kuin täytän <span class="em">40</span></h1>
