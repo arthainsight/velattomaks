@@ -131,7 +131,16 @@
   .tag.set{background:var(--amber-soft);color:var(--amber)}
   .tag.unk{background:var(--remain-soft);color:var(--remain)}
 
-  footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--line);color:var(--ink-soft);font-size:.85rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--line);color:var(--ink-soft);font-size:.85rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+
+  /* ---------- TikTok link ---------- */
+  .tt{display:inline-flex;align-items:center;gap:9px;margin-top:22px;padding:11px 20px;border-radius:999px;background:var(--ink);color:#fff;text-decoration:none;font-weight:600;font-size:.95rem;box-shadow:var(--shadow);transition:transform .16s ease,box-shadow .16s ease}
+  .tt:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(29,35,48,.18)}
+  .tt svg{width:19px;height:19px;flex:none}
+  .tt .tt-handle{color:var(--accent);font-weight:700}
+  .tt-foot{color:var(--ink-soft);text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:7px}
+  .tt-foot:hover{color:var(--ink)}
+  .tt-foot svg{width:15px;height:15px}
 
   /* ---------- Mobile ---------- */
   @media (max-width:600px){
@@ -157,6 +166,10 @@
     <div class="kicker">Tavoite · 13.10.2027 · 40 v.</div>
     <h1>Velattomaks ennen kuin täytän <span class="em">40</span></h1>
     <p class="sub">…eli velaton ennen 40-vuotispäivää <b>13.10.2027</b>. Maksettu tähän mennessä, jäljellä oleva velka ja tahti, jolla maaliin ehtii ajoissa.</p>
+    <a class="tt" href="https://www.tiktok.com/@velattomaks" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.5 3c.3 2.1 1.6 3.73 3.5 4.03v2.34c-1.2 0-2.4-.38-3.5-1.02v6.43c0 3.31-2.69 6-6 6s-6-2.69-6-6 2.69-6 6-6c.34 0 .67.03 1 .08v2.42c-.32-.1-.66-.16-1-.16-1.83 0-3.33 1.5-3.33 3.34S8.67 18.17 10.5 18.17s3.33-1.5 3.33-3.34V3h2.67z"/></svg>
+      Seuraa matkaa TikTokissa <span class="tt-handle">@velattomaks</span>
+    </a>
 
     <div class="countdown">
       <div class="cd-main">
@@ -211,6 +224,10 @@
 
   <footer>
     <span>Velattomaks-seuranta</span>
+    <a class="tt-foot" href="https://www.tiktok.com/@velattomaks" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.5 3c.3 2.1 1.6 3.73 3.5 4.03v2.34c-1.2 0-2.4-.38-3.5-1.02v6.43c0 3.31-2.69 6-6 6s-6-2.69-6-6 2.69-6 6-6c.34 0 .67.03 1 .08v2.42c-.32-.1-.66-.16-1-.16-1.83 0-3.33 1.5-3.33 3.34S8.67 18.17 10.5 18.17s3.33-1.5 3.33-3.34V3h2.67z"/></svg>
+      @velattomaks
+    </a>
     <span id="updated"></span>
   </footer>
 </div>
