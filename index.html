@@ -153,19 +153,21 @@
   footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--line);color:var(--ink-soft);font-size:.85rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
 
   /* ---------- Social links ---------- */
-  .socials{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
-  .tt,.ln{display:inline-flex;align-items:center;gap:9px;padding:11px 20px;border-radius:999px;text-decoration:none;font-weight:600;font-size:.95rem;box-shadow:var(--shadow);transition:transform .16s ease,box-shadow .16s ease}
-  .tt{background:var(--ink);color:#fff}
-  .tt:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(29,35,48,.18)}
-  .tt svg{width:19px;height:19px;flex:none}
-  .tt .tt-handle{color:var(--accent);font-weight:700}
-  .ln{background:var(--paper-2);color:var(--ink);border:1px solid var(--line)}
-  .ln:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(29,35,48,.12)}
-  .ln svg{width:19px;height:19px;flex:none;color:#0a66c2}
-  .foot-soc{display:inline-flex;align-items:center;gap:18px}
+  .soc-lead{margin:22px 0 0;color:var(--ink-soft);font-size:.95rem;font-weight:600}
+  .socials{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+  .soc{display:inline-flex;align-items:center;gap:9px;padding:11px 20px;border-radius:999px;text-decoration:none;font-weight:600;font-size:.95rem;background:var(--paper-2);color:var(--ink);border:1px solid var(--line);box-shadow:var(--shadow);transition:transform .16s ease,box-shadow .16s ease}
+  .soc:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(29,35,48,.12)}
+  .soc svg{width:19px;height:19px;flex:none}
+  .soc.yt svg{color:#ff0000}
+  .soc.ig svg{color:#d62976}
+  .soc.fb svg{color:#1877f2}
+  .soc.li svg{color:#0a66c2}
+  .foot-soc{display:inline-flex;align-items:center;gap:14px;flex-wrap:wrap}
   .tt-foot{color:var(--ink-soft);text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:7px}
   .tt-foot:hover{color:var(--ink)}
   .tt-foot svg{width:15px;height:15px}
+  .foot-mail{color:var(--ink-soft);text-decoration:none;font-weight:600;border-bottom:1px solid var(--line)}
+  .foot-mail:hover{color:var(--ink)}
 
   /* ---------- Mobile ---------- */
   @media (max-width:600px){
@@ -195,12 +197,25 @@
     <div class="kicker">Tavoite · 13.10.2027 · 40 v.</div>
     <h1>Velattomaks ennen kuin täytän <span class="em">40</span></h1>
     <p class="sub">…eli velaton ennen 40-vuotispäivää <b>13.10.2027</b>. Maksettu tähän mennessä, jäljellä oleva velka ja tahti, jolla maaliin ehtii ajoissa.</p>
+    <p class="soc-lead">Seuraa matkaa eri somekanavillani.</p>
     <div class="socials">
-      <a class="tt" href="https://www.tiktok.com/@velattomaks" target="_blank" rel="noopener noreferrer">
+      <a class="soc tk" href="https://www.tiktok.com/@velattomaks.fi" target="_blank" rel="noopener noreferrer">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.5 3c.3 2.1 1.6 3.73 3.5 4.03v2.34c-1.2 0-2.4-.38-3.5-1.02v6.43c0 3.31-2.69 6-6 6s-6-2.69-6-6 2.69-6 6-6c.34 0 .67.03 1 .08v2.42c-.32-.1-.66-.16-1-.16-1.83 0-3.33 1.5-3.33 3.34S8.67 18.17 10.5 18.17s3.33-1.5 3.33-3.34V3h2.67z"/></svg>
-        Seuraa matkaa TikTokissa <span class="tt-handle">@velattomaks</span>
+        TikTok
       </a>
-      <a class="ln" href="https://www.linkedin.com/in/rikuforsell/" target="_blank" rel="noopener noreferrer">
+      <a class="soc yt" href="https://www.youtube.com/@velattomaks" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 0 0 .5 6.19C0 8.07 0 12 0 12s0 3.93.5 5.81a3.02 3.02 0 0 0 2.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 0 0 2.12-2.14C24 15.93 24 12 24 12s0-3.93-.5-5.81zM9.55 15.57V8.43L15.82 12l-6.27 3.57z"/></svg>
+        YouTube
+      </a>
+      <a class="soc ig" href="https://www.instagram.com/velattomaks.fi" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.02 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.64-.07-4.85s.01-3.58.07-4.85c.15-3.23 1.66-4.77 4.92-4.92C8.42 2.18 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.69.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.2-4.35-2.62-6.78-6.98-6.98C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.41-11.85a1.44 1.44 0 1 0 0 2.89 1.44 1.44 0 0 0 0-2.89z"/></svg>
+        Instagram
+      </a>
+      <a class="soc fb" href="https://www.facebook.com/profile.php?id=61591109935003" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.07C24 5.44 18.63.07 12 .07S0 5.44 0 12.07c0 5.99 4.39 10.95 10.13 11.85v-8.38H7.08v-3.47h3.05V9.43c0-3.01 1.79-4.67 4.53-4.67 1.31 0 2.69.24 2.69.24v2.95h-1.51c-1.49 0-1.96.93-1.96 1.87v2.25h3.33l-.53 3.47h-2.8v8.38C19.61 23.02 24 18.06 24 12.07z"/></svg>
+        Facebook
+      </a>
+      <a class="soc li" href="https://www.linkedin.com/in/rikuforsell/" target="_blank" rel="noopener noreferrer">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
         LinkedIn
       </a>
@@ -276,15 +291,23 @@
   </section>
 
   <footer>
-    <span>Velattomaks-seuranta</span>
+    <span>Velattomaks-seuranta · Yhteydenotot <a class="foot-mail" href="mailto:info@arthainsight.com">info@arthainsight.com</a></span>
     <span class="foot-soc">
-      <a class="tt-foot" href="https://www.tiktok.com/@velattomaks" target="_blank" rel="noopener noreferrer">
+      <a class="tt-foot" href="https://www.tiktok.com/@velattomaks.fi" target="_blank" rel="noopener noreferrer">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.5 3c.3 2.1 1.6 3.73 3.5 4.03v2.34c-1.2 0-2.4-.38-3.5-1.02v6.43c0 3.31-2.69 6-6 6s-6-2.69-6-6 2.69-6 6-6c.34 0 .67.03 1 .08v2.42c-.32-.1-.66-.16-1-.16-1.83 0-3.33 1.5-3.33 3.34S8.67 18.17 10.5 18.17s3.33-1.5 3.33-3.34V3h2.67z"/></svg>
-        @velattomaks
+        @velattomaks.fi
       </a>
-      <a class="tt-foot" href="https://www.linkedin.com/in/rikuforsell/" target="_blank" rel="noopener noreferrer">
+      <a class="tt-foot" href="https://www.youtube.com/@velattomaks" target="_blank" rel="noopener noreferrer" aria-label="YouTube" title="YouTube">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 0 0 .5 6.19C0 8.07 0 12 0 12s0 3.93.5 5.81a3.02 3.02 0 0 0 2.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 0 0 2.12-2.14C24 15.93 24 12 24 12s0-3.93-.5-5.81zM9.55 15.57V8.43L15.82 12l-6.27 3.57z"/></svg>
+      </a>
+      <a class="tt-foot" href="https://www.instagram.com/velattomaks.fi" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.02 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.64-.07-4.85s.01-3.58.07-4.85c.15-3.23 1.66-4.77 4.92-4.92C8.42 2.18 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.69.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.2-4.35-2.62-6.78-6.98-6.98C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.41-11.85a1.44 1.44 0 1 0 0 2.89 1.44 1.44 0 0 0 0-2.89z"/></svg>
+      </a>
+      <a class="tt-foot" href="https://www.facebook.com/profile.php?id=61591109935003" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.07C24 5.44 18.63.07 12 .07S0 5.44 0 12.07c0 5.99 4.39 10.95 10.13 11.85v-8.38H7.08v-3.47h3.05V9.43c0-3.01 1.79-4.67 4.53-4.67 1.31 0 2.69.24 2.69.24v2.95h-1.51c-1.49 0-1.96.93-1.96 1.87v2.25h3.33l-.53 3.47h-2.8v8.38C19.61 23.02 24 18.06 24 12.07z"/></svg>
+      </a>
+      <a class="tt-foot" href="https://www.linkedin.com/in/rikuforsell/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
-        LinkedIn
       </a>
     </span>
     <span id="updated"></span>
