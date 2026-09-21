@@ -8,6 +8,7 @@ Näyttää:
 - tavoitetahdin (€/kk)
 - maksuhistorian 2016–2026
 - käynnissä olevat oikeusprosessit erikseen nostettuna
+- skenaariot sille, paljonko maksettavaa jää jos oikeusjutut voitetaan
 - velkalistan, anonymisoituna velkakohtaisesti (A–V)
 
 ## Käyttö

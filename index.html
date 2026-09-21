@@ -292,6 +292,12 @@
     <p class="note">Käräjäoikeudessa olevien asioiden arvioitu käsittelyaika on 12–24 kuukautta. Yksi käräjäoikeudessa hävitty asia on hovioikeuden käsittelyssä. Prosessit on listattu anonymisoituna.</p>
   </section>
 
+  <section class="reveal" style="animation-delay:.14s">
+    <div class="sec-head"><h2>Jos jutut menevät läpi</h2><span class="line"></span><span class="meta" id="scenMeta"></span></div>
+    <div class="stats" id="scenList"></div>
+    <p class="note">Laskelma olettaa, että käräjillä voitettu velka poistuu kokonaan ja sovinnossa oleva velka raukeaa. Sovinnon lopullinen summa voi hyvin olla tätä suurempi, joten alin rivi on paras mahdollinen lopputulos — ei ennuste. Velat, joiden summa ei ole vielä tiedossa, eivät ole luvuissa mukana.</p>
+  </section>
+
   <section class="reveal" style="animation-delay:.16s">
     <div class="sec-head"><h2>Maksuhistoria</h2><span class="line"></span><span class="meta" id="histMeta"></span></div>
     <div class="chart-card"><div class="chart" id="chart"></div></div>
@@ -416,7 +422,7 @@ function calc(){
   const remDays = Math.max(0, Math.ceil((dl-cur)/86400000));
   const monthsExact = Math.max(0.1, ms/86400000/30.437);
   const pace = remaining/monthsExact;
-  return {days, months, remDays, pace};
+  return {days, months, remDays, monthsExact, pace};
 }
 
 function render(){
@@ -440,6 +446,20 @@ function render(){
   document.getElementById('stAppealH').textContent   = `${ofStatus("appeal").length} velka · hävitty käräjäoikeudessa`;
   document.getElementById('stPace').textContent      = eur0(c.pace)+' / kk';
   document.getElementById('stPaceH').textContent     = `jaettuna ${c.months} kk ${c.remDays} pv ajalle`;
+
+  const scen = [
+    {t:'Nykytilanne',               amount:remaining,                      h:'kaikki velat maksuun'},
+    {t:'Käräjäoikeus voitetaan',    amount:remaining-inCourt,              h:`${ofStatus("court").length} velkaa kaatuu`},
+    {t:'Myös hovioikeus voitetaan', amount:remaining-inCourt-inAppeal,     h:`${ofStatus("appeal").length} velka lisää kaatuu`},
+    {t:'Paras mahdollinen',         amount:remaining-inProcess,            h:'myös sovinnot raukeavat', best:true},
+  ];
+  document.getElementById('scenList').innerHTML = scen.map(x=>
+    `<div class="stat">
+      <div class="t">${x.t}</div>
+      <div class="v num${x.best?' accent':''}">${eur(x.amount)}</div>
+      <div class="h">${x.h} · tahti ${eur0(x.amount/c.monthsExact)} / kk</div>
+    </div>`).join('');
+  document.getElementById('scenMeta').textContent = `parhaimmillaan ${eur(inProcess)} vähemmän maksettavaa`;
 
   // animate pct
   const pv = document.getElementById('pctVal');
