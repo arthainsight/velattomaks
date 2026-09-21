@@ -371,6 +371,8 @@ const DATA = {
     {id:"T", amount:569.72},
     {id:"U", amount:214.00},
     {id:"V", amount:66.30},
+    {id:"W", amount:null},
+    {id:"X", amount:null},
   ],
 };
 
@@ -469,7 +471,10 @@ function render(){
 // ---- Debt list ----
 (function(){
   const list = document.getElementById('debtList');
-  document.getElementById('debtMeta').textContent = `${DATA.debts.length} velkaa · anonymisoituna`;
+  const missing = DATA.debts.filter(d=>d.amount===null).length;
+  document.getElementById('debtMeta').textContent = missing
+    ? `${DATA.debts.length} velkaa · ${missing} summaa vielä auki`
+    : `${DATA.debts.length} velkaa · anonymisoituna`;
   const sorted = [...DATA.debts].sort((a,b)=>(b.amount ?? -1)-(a.amount ?? -1));
   sorted.forEach(d=>{
     const unknown = d.amount===null;
