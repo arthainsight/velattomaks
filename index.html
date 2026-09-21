@@ -258,7 +258,8 @@
       <div class="legend">
         <div><span class="dot paid"></span><span>Maksettu <b class="num" id="legPaid">—</b></span></div>
         <div><span class="dot remain"></span><span>Jäljellä <b class="num" id="legRemain">—</b></span></div>
-        <div><span class="muted">josta oikeusprosessissa <b class="num" id="legSet">—</b></span></div>
+        <div><span class="muted">josta oikeusprosessissa <b class="num" id="legCourt">—</b></span></div>
+        <div><span class="muted">josta sovittelussa/selvittelyssä <b class="num" id="legSettle">—</b></span></div>
       </div>
     </div>
 
@@ -393,6 +394,7 @@ const sumOf     = st => ofStatus(st).reduce((s,c)=>s+(c.amount||0),0);
 const settling  = sumOf("settling");
 const inCourt   = sumOf("court");
 const inAppeal  = sumOf("appeal");
+const inLegal   = inCourt + inAppeal;
 const inProcess = cases.reduce((s,c)=>s+(c.amount||0),0);
 const paid      = DATA.payments.reduce((s,p)=>s+p.amount,0);
 
@@ -435,7 +437,8 @@ function render(){
   document.getElementById('journeyTotal').textContent = eur(journey);
   document.getElementById('legPaid').textContent   = eur(paid);
   document.getElementById('legRemain').textContent = eur(remaining);
-  document.getElementById('legSet').textContent    = eur(inProcess);
+  document.getElementById('legCourt').textContent  = eur(inLegal);
+  document.getElementById('legSettle').textContent = eur(settling);
   document.getElementById('progMeta').textContent  = `${pct.toFixed(1).replace('.',',')} % maksettu`;
 
   document.getElementById('stSet').textContent       = eur(settling);
