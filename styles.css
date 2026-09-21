@@ -195,6 +195,7 @@
   .prose h3{font-family:'Fraunces',serif;font-weight:600;font-size:1.15rem;margin-bottom:10px;letter-spacing:-.01em}
   .prose p{color:var(--ink-soft);line-height:1.7}
   .prose p + p{margin-top:12px}
+  .prose ul + p{margin-top:12px}
   .prose ul{margin:12px 0 0 20px;color:var(--ink-soft);line-height:1.7}
   .prose li + li{margin-top:7px}
   .prose b{color:var(--ink)}
