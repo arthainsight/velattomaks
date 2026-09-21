@@ -265,6 +265,7 @@
     <div class="stats">
       <div class="stat"><div class="t">Sovinnossa selvityksessä</div><div class="v remain num" id="stSet">—</div><div class="h" id="stSetH">summa voi vielä muuttua</div></div>
       <div class="stat"><div class="t">Käräjäoikeudessa</div><div class="v num" id="stCourt">—</div><div class="h" id="stCourtH">odottaa käsittelyä</div></div>
+      <div class="stat"><div class="t">Hovioikeudessa</div><div class="v num" id="stAppeal">—</div><div class="h" id="stAppealH">odottaa käsittelyä</div></div>
       <div class="stat"><div class="t">Tavoitetahti</div><div class="v accent num" id="stPace">—</div><div class="h" id="stPaceH">jotta velaton 13.10.2027</div></div>
     </div>
   </section>
@@ -352,7 +353,7 @@ const DATA = {
     {id:3, status:"court",    amount:4731.98},
     {id:4, status:"court",    amount:2018.77},
     {id:5, status:"court",    amount:981.16},
-    {id:6, status:"appeal",   amount:null},
+    {id:6, status:"appeal",   amount:6246.64},
   ],
   // amount = velan kokonaissumma velkojittain; null = summa ei tiedossa
   debts: [
@@ -382,7 +383,8 @@ const ofStatus  = st => DATA.cases.filter(c=>c.status===st);
 const sumOf     = st => ofStatus(st).reduce((s,c)=>s+(c.amount||0),0);
 const settling  = sumOf("settling");
 const inCourt   = sumOf("court");
-const inProcess = settling + inCourt;
+const inAppeal  = sumOf("appeal");
+const inProcess = DATA.cases.reduce((s,c)=>s+(c.amount||0),0);
 const paid      = DATA.payments.reduce((s,p)=>s+p.amount,0);
 const journey   = paid + remaining;
 const pct       = journey>0 ? paid/journey*100 : 0;
@@ -419,6 +421,8 @@ function render(){
   document.getElementById('stSetH').textContent      = `${ofStatus("settling").length} velkaa · sovintoa selvitetään`;
   document.getElementById('stCourt').textContent     = eur(inCourt);
   document.getElementById('stCourtH').textContent    = `${ofStatus("court").length} velkaa · käsittelyaika 12–24 kk`;
+  document.getElementById('stAppeal').textContent    = eur(inAppeal);
+  document.getElementById('stAppealH').textContent   = `${ofStatus("appeal").length} velka · hävitty käräjäoikeudessa`;
   document.getElementById('stPace').textContent      = eur0(c.pace)+' / kk';
   document.getElementById('stPaceH').textContent     = `jaettuna ${c.months} kk ${c.remDays} pv ajalle`;
 
@@ -490,8 +494,9 @@ function render(){
     list.appendChild(el);
   });
   const unknowns = DATA.cases.filter(c=>c.amount===null).length;
-  document.getElementById('caseMeta').textContent =
-    `${DATA.cases.length} velkaa · tunnetut summat ${eur(inProcess)}` + (unknowns?` · ${unknowns} summa vielä auki`:'');
+  document.getElementById('caseMeta').textContent = unknowns
+    ? `${DATA.cases.length} velkaa · tunnetut summat ${eur(inProcess)} · ${unknowns} summa vielä auki`
+    : `${DATA.cases.length} velkaa · yhteensä ${eur(inProcess)}`;
 })();
 
 // ---- Wins ----
