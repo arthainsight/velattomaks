@@ -298,7 +298,7 @@
   </section>
 
   <section class="reveal" style="animation-delay:.2s">
-    <div class="sec-head"><h2>Velat</h2><span class="line"></span><span class="meta">anonymisoitu velkojittain</span></div>
+    <div class="sec-head"><h2>Velat</h2><span class="line"></span><span class="meta" id="debtMeta"></span></div>
     <div class="debts" id="debtList"></div>
   </section>
 
@@ -342,35 +342,35 @@ const DATA = {
     {year:2025, amount:0},
     {year:2026, amount:0},
   ],
-  // Käynnissä olevat perintä- ja oikeusprosessit, anonymisoituna.
-  // status: "settling" = vastapuoleen ollaan yhteydessä, sovinnon mahdollisuutta selvitetään
-  //         "court"    = käräjäoikeuden käsittelyssä, arvioitu käsittelyaika 12–24 kk
-  //         "appeal"   = hävitty käräjäoikeudessa, asia hovioikeuden käsittelyssä
-  // amount = prosessissa oleva velkasumma; null = summa ei vielä tiedossa
-  cases: [
-    {id:1, status:"settling", amount:2458.69},
-    {id:2, status:"settling", amount:5831.44},
-    {id:3, status:"court",    amount:4731.98},
-    {id:4, status:"court",    amount:2018.77},
-    {id:5, status:"court",    amount:981.16},
-    {id:6, status:"appeal",   amount:6246.64},
-  ],
-  // amount = velan kokonaissumma velkojittain; null = summa ei tiedossa
+  // Yksi rivi per perinnässä oleva velka, anonymisoituna. amount = velkasumma,
+  // null = summa ei tiedossa. status kertoo käynnissä olevan prosessin:
+  //   "settling" = vastapuoleen ollaan yhteydessä, sovinnon mahdollisuutta selvitetään
+  //   "court"    = käräjäoikeuden käsittelyssä, arvioitu käsittelyaika 12–24 kk
+  //   "appeal"   = hävitty käräjäoikeudessa, asia hovioikeuden käsittelyssä
+  // Ilman status-kenttää velka ei ole oikeusprosessissa.
   debts: [
-    {id:"A", amount:14724.82},
-    {id:"B", amount:10674.38},
-    {id:"C", amount:6096.73},
-    {id:"D", amount:8776.34},
-    {id:"E", amount:9404.50},
-    {id:"F", amount:3926.63},
-    {id:"G", amount:4659.57},
-    {id:"H", amount:981.16},
-    {id:"I", amount:618.14},
-    {id:"J", amount:626.45},
-    {id:"K", amount:247.29},
-    {id:"L", amount:9871.22},
-    {id:"M", amount:null},
-    {id:"N", amount:null},
+    {id:"A", amount:9440.35},
+    {id:"B", amount:9032.32},
+    {id:"C", amount:6246.64, status:"appeal"},
+    {id:"D", amount:5831.44, status:"settling"},
+    {id:"E", amount:5422.12},
+    {id:"F", amount:5388.78},
+    {id:"G", amount:4731.98, status:"court"},
+    {id:"H", amount:4659.57},
+    {id:"I", amount:3805.21},
+    {id:"J", amount:3553.74},
+    {id:"K", amount:2958.91},
+    {id:"L", amount:2458.69, status:"settling"},
+    {id:"M", amount:2018.77, status:"court"},
+    {id:"N", amount:1474.66},
+    {id:"O", amount:1358.57},
+    {id:"P", amount:981.16, status:"court"},
+    {id:"Q", amount:702.70},
+    {id:"R", amount:626.45},
+    {id:"S", amount:618.14},
+    {id:"T", amount:569.72},
+    {id:"U", amount:214.00},
+    {id:"V", amount:66.30},
   ],
 };
 
@@ -379,13 +379,26 @@ const eur0 = n => new Intl.NumberFormat('fi-FI',{style:'currency',currency:'EUR'
 const fi = n => new Intl.NumberFormat('fi-FI').format(n);
 
 const remaining = DATA.debts.reduce((s,d)=>s+(d.amount||0),0);
-const ofStatus  = st => DATA.cases.filter(c=>c.status===st);
+const cases     = DATA.debts.filter(d=>d.status);
+const ofStatus  = st => cases.filter(c=>c.status===st);
 const sumOf     = st => ofStatus(st).reduce((s,c)=>s+(c.amount||0),0);
 const settling  = sumOf("settling");
 const inCourt   = sumOf("court");
 const inAppeal  = sumOf("appeal");
-const inProcess = DATA.cases.reduce((s,c)=>s+(c.amount||0),0);
+const inProcess = cases.reduce((s,c)=>s+(c.amount||0),0);
 const paid      = DATA.payments.reduce((s,p)=>s+p.amount,0);
+
+// ---- Tilamerkinnät ----
+const LABELS = {
+  settling:{cls:'set',   text:'sovintoa selvitetään'},
+  court:   {cls:'court', text:'käräjäoikeudessa'},
+  appeal:  {cls:'unk',   text:'hovioikeudessa'},
+};
+const tagFor = d => d.amount===null
+  ? '<span class="tag unk">summa puuttuu</span>'
+  : d.status
+    ? `<span class="tag ${LABELS[d.status].cls}">${LABELS[d.status].text}</span>`
+    : '<span class="tag ok">vahvistettu</span>';
 const journey   = paid + remaining;
 const pct       = journey>0 ? paid/journey*100 : 0;
 
@@ -456,14 +469,13 @@ function render(){
 // ---- Debt list ----
 (function(){
   const list = document.getElementById('debtList');
+  document.getElementById('debtMeta').textContent = `${DATA.debts.length} velkaa · anonymisoituna`;
   const sorted = [...DATA.debts].sort((a,b)=>(b.amount ?? -1)-(a.amount ?? -1));
   sorted.forEach(d=>{
     const unknown = d.amount===null;
-    const tag = unknown
-      ? '<span class="tag unk">summa puuttuu</span>'
-      : '<span class="tag ok">vahvistettu</span>';
+    const tag = tagFor(d);
     const el = document.createElement('div');
-    el.className='debt'+(unknown?' unknown':'');
+    el.className='debt'+(unknown?' unknown':'')+(d.status==='court'?' court':'');
     el.innerHTML = `<div class="badge">${d.id}</div>
       <div class="info">
         <div class="amt${unknown?' q':''}">${unknown?'?':eur(d.amount)}</div>
@@ -476,27 +488,21 @@ function render(){
 // ---- Käynnissä olevat prosessit ----
 (function(){
   const list = document.getElementById('caseList');
-  const labels = {
-    settling:{cls:'set',   text:'sovintoa selvitetään'},
-    court:   {cls:'court', text:'käräjäoikeudessa'},
-    appeal:  {cls:'unk',   text:'hovioikeudessa'},
-  };
-  DATA.cases.forEach(c=>{
+  cases.forEach(c=>{
     const unknown = c.amount===null;
-    const l = labels[c.status];
     const el = document.createElement('div');
     el.className = 'debt'+(unknown?' unknown':'')+(c.status==='court'?' court':'');
     el.innerHTML = `<div class="badge">${c.id}</div>
       <div class="info">
         <div class="amt${unknown?' q':''}">${unknown?'?':eur(c.amount)}</div>
-        <span class="tag ${l.cls}">${l.text}</span>
+        ${tagFor(c)}
       </div>`;
     list.appendChild(el);
   });
-  const unknowns = DATA.cases.filter(c=>c.amount===null).length;
+  const unknowns = cases.filter(c=>c.amount===null).length;
   document.getElementById('caseMeta').textContent = unknowns
-    ? `${DATA.cases.length} velkaa · tunnetut summat ${eur(inProcess)} · ${unknowns} summa vielä auki`
-    : `${DATA.cases.length} velkaa · yhteensä ${eur(inProcess)}`;
+    ? `${cases.length} velkaa · tunnetut summat ${eur(inProcess)} · ${unknowns} summa vielä auki`
+    : `${cases.length} velkaa · yhteensä ${eur(inProcess)}`;
 })();
 
 // ---- Wins ----

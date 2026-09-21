@@ -7,8 +7,8 @@ Näyttää:
 - edistymispalkin (maksettu vs. jäljellä)
 - tavoitetahdin (€/kk)
 - maksuhistorian 2016–2026
-- käynnissä olevat perintä- ja oikeusprosessit, anonymisoituna (1–6)
-- velkalistan, anonymisoituna velkojittain (A–N)
+- käynnissä olevat oikeusprosessit erikseen nostettuna
+- velkalistan, anonymisoituna velkakohtaisesti (A–V)
 
 ## Käyttö
 
@@ -20,8 +20,9 @@ Kaikki luvut ovat `index.html`-tiedoston lopussa `DATA`-objektissa. Lisää maks
 täytä puuttuvat velkasummat, niin countdown, edistymispalkki ja tahti laskevat uudet
 arvot automaattisesti.
 
-`DATA.debts` on velkojittainen kokonaistilanne ja `DATA.cases` käynnissä olevat
-prosessit. Prosessin tila kerrotaan `status`-kentässä:
+`DATA.debts` on yksi rivi per perinnässä oleva velka. Jos velka on oikeusprosessissa,
+se merkitään `status`-kentällä — samat velat nostetaan silloin automaattisesti myös
+"Käynnissä olevat prosessit" -listaan ja omiin tilastokortteihinsa:
 
 | status | merkitys |
 | --- | --- |
@@ -29,5 +30,6 @@ prosessit. Prosessin tila kerrotaan `status`-kentässä:
 | `court` | käräjäoikeuden käsittelyssä, arvioitu käsittelyaika 12–24 kk |
 | `appeal` | hävitty käräjäoikeudessa, asia hovioikeuden käsittelyssä |
 
-Summat, laskurit ja tilastokortit lasketaan näistä kahdesta listasta; mitään lukua ei
-ole kovakoodattu sivun HTML:ään.
+Ilman `status`-kenttää velka on tavallinen perintävelka. Summat, laskurit ja
+tilastokortit lasketaan tästä yhdestä listasta; mitään lukua ei ole kovakoodattu
+sivun HTML:ään.
