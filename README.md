@@ -11,13 +11,24 @@ Näyttää:
 - skenaariot sille, paljonko maksettavaa jää jos oikeusjutut voitetaan
 - velkalistan, anonymisoituna velkakohtaisesti (A–V)
 
+## Sivut ja tiedostot
+
+| Tiedosto | Mitä |
+| --- | --- |
+| `index.html` | Etusivu: laskuri, edistyminen, oikeusprosessit, skenaariot, velkalista |
+| `minusta.html` | Kuka olen, miksi luvut ovat julkisia, mitä tämä ei ole |
+| `yhteistyo.html` | Yhteistyöperiaatteet: kenen kanssa teen töitä ja kenen kanssa en |
+| `data.js` | **Kaikki luvut.** Jaettu kaikille sivuille |
+| `styles.css` | Jaetut tyylit |
+
 ## Käyttö
 
-Avaa `index.html` selaimessa. Ei riippuvuuksia.
+Avaa `index.html` selaimessa. Ei riippuvuuksia, ei build-vaihetta.
+Vercelissä `cleanUrls` on päällä, joten sivut vastaavat osoitteissa `/minusta` ja `/yhteistyo`.
 
 ## Päivitys
 
-Kaikki luvut ovat `index.html`-tiedoston lopussa `DATA`-objektissa. Lisää maksuja tai
+Kaikki luvut ovat `data.js`-tiedoston `DATA`-objektissa. Lisää maksuja tai
 täytä puuttuvat velkasummat, niin countdown, edistymispalkki ja tahti laskevat uudet
 arvot automaattisesti.
 
