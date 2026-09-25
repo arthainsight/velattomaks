@@ -20,6 +20,8 @@ Näyttää:
 | `minusta.html` | Kuka olen, miksi luvut ovat julkisia, mitä tämä ei ole |
 | `apua.html` | Maksuttomat tukipalvelut: peliongelma, velat, ulosotto, kriisiapu |
 | `yhteistyo.html` | Yhteistyöperiaatteet: kenen kanssa teen töitä ja kenen kanssa en |
+| `tietosuoja.html` | Tietosuojaseloste (linkitetty footerista, ei navigaatiosta) |
+| `signup.js` | Sähköpostitilauksen lähetys taustalla + kiitosviesti |
 | `data.js` | **Kaikki luvut.** Jaettu kaikille sivuille |
 | `styles.css` | Jaetut tyylit |
 | `og.png` | Jakokuva somelinkeille (1200×630) |
@@ -68,3 +70,14 @@ näkymä jää ikkunaa matalammaksi ja kuvan alareuna leikkautuu.
 
 Kuvassa ei ole velkasummia tarkoituksella: ne vanhenisivat, eikä
 vanhentunut luku sovi läpinäkyvyyteen perustuvaan projektiin.
+
+## Sähköpostilista
+
+Tilauslomake on etusivulla ja Minusta-sivulla — **ei Apua-sivulla**, jossa ei kerätä
+mitään. Lomake postaa MailerLiten endpointiin; tili- ja lomaketunniste ovat
+`action`-osoitteessa. Jos vaihdat lomaketta MailerLitessä, päivitä osoite molempiin
+tiedostoihin.
+
+`signup.js` lähettää lomakkeen taustalla, jotta käyttäjä ei päädy MailerLiten raakaan
+JSON-vastaukseen, ja näyttää tilalle kiitosviestin. Jos lähetys epäonnistuu, palataan
+tavalliseen lomakelähetykseen, jolloin tilaus menee silti perille.
