@@ -122,6 +122,22 @@
     </div>
   </section>
 
+  <section class="reveal" style="animation-delay:.20s">
+    <div class="signup">
+      <h3>Haluatko tietää miten tässä käy?</h3>
+      <p>Saat sähköpostin kun tilanne muuttuu — myös silloin kun se muuttuu huonompaan suuntaan.</p>
+      <!-- MailerLite: korvaa ACCOUNT_ID ja FORM_ID oman tilisi arvoilla (ks. upotuskoodi) -->
+      <form action="https://assets.mailerlite.com/jsonp/ACCOUNT_ID/forms/FORM_ID/subscribe" method="post">
+        <label class="hp" for="hp-m" aria-hidden="true">Jätä tämä tyhjäksi</label>
+        <input class="hp" type="text" id="hp-m" name="b_hp" tabindex="-1" autocomplete="off">
+        <label class="hp" for="email-m">Sähköpostiosoite</label>
+        <input type="email" id="email-m" name="fields[email]" placeholder="sähköpostiosoitteesi" required autocomplete="email">
+        <button type="submit">Tilaa päivitykset</button>
+      </form>
+      <p class="fine">Vain tämän projektin päivityksiä — ei mainoksia eikä osoitteen luovuttamista eteenpäin. Voit perua tilauksen milloin tahansa yhdellä klikkauksella.</p>
+    </div>
+  </section>
+
   <section class="reveal" style="animation-delay:.22s">
     <div class="cta">
       <h3>Yhteistyö</h3>

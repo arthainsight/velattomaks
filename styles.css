@@ -249,3 +249,22 @@
   .help.urgent{background:linear-gradient(135deg,var(--remain-soft),var(--paper-2))}
   .help.urgent .num{color:var(--remain)}
   .help.nophone .go{margin-top:12px}
+
+  /* ---------- Sähköpostitilaus ---------- */
+  .signup{background:linear-gradient(135deg,var(--accent-soft),var(--paper-2));
+    border:1px solid var(--line);border-radius:var(--radius);
+    padding:clamp(26px,3.5vw,38px);box-shadow:var(--shadow);max-width:72ch}
+  .signup h3{font-family:'Fraunces',serif;font-weight:600;font-size:1.45rem;letter-spacing:-.01em}
+  .signup > p{color:var(--ink-soft);margin-top:10px;line-height:1.65;max-width:56ch}
+  .signup form{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+  .signup input[type=email]{flex:1;min-width:240px;padding:14px 18px;border-radius:999px;
+    border:1px solid var(--line);background:var(--paper-2);color:var(--ink);
+    font-family:inherit;font-size:1rem}
+  .signup input[type=email]::placeholder{color:var(--ink-soft)}
+  .signup input[type=email]:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:transparent}
+  .signup button{padding:14px 30px;border:0;border-radius:999px;background:var(--accent);color:#fff;
+    font-family:inherit;font-weight:600;font-size:1rem;cursor:pointer;
+    transition:transform .16s ease,box-shadow .16s ease}
+  .signup button:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(31,122,84,.3)}
+  .signup .fine{margin-top:14px;font-size:.84rem;color:var(--ink-soft);line-height:1.55;max-width:56ch}
+  .signup .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
