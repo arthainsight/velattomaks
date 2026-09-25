@@ -22,6 +22,9 @@ Näyttää:
 | `yhteistyo.html` | Yhteistyöperiaatteet: kenen kanssa teen töitä ja kenen kanssa en |
 | `data.js` | **Kaikki luvut.** Jaettu kaikille sivuille |
 | `styles.css` | Jaetut tyylit |
+| `og.png` | Jakokuva somelinkeille (1200×630) |
+| `tools/og.html` | Jakokuvan lähde — muokkaa ja renderöi uudelleen (ks. alla) |
+| `sitemap.xml`, `robots.txt` | Hakukoneille |
 
 ## Käyttö
 
@@ -47,3 +50,21 @@ se merkitään `status`-kentällä — samat velat nostetaan silloin automaattis
 Ilman `status`-kenttää velka on tavallinen perintävelka. Summat, laskurit ja
 tilastokortit lasketaan tästä yhdestä listasta; mitään lukua ei ole kovakoodattu
 sivun HTML:ään.
+
+## Jakokuvan päivitys
+
+`og.png` on renderöity `tools/og.html`-tiedostosta. Jos muokkaat sitä, aja
+sivusto paikallisesti ja renderöi uudelleen headless-selaimella:
+
+```
+python3 -m http.server 8000
+headless_shell --disable-gpu --no-sandbox --hide-scrollbars \
+  --virtual-time-budget=8000 --window-size=1200,630 \
+  --screenshot=og.png http://localhost:8000/tools/og.html
+```
+
+Käytä nimenomaan headless shell -binääriä; tavallisessa Chromiumissa
+näkymä jää ikkunaa matalammaksi ja kuvan alareuna leikkautuu.
+
+Kuvassa ei ole velkasummia tarkoituksella: ne vanhenisivat, eikä
+vanhentunut luku sovi läpinäkyvyyteen perustuvaan projektiin.
