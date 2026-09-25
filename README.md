@@ -9,6 +9,7 @@ Näyttää:
 - maksuhistorian 2016–2026
 - käynnissä olevat oikeusprosessit erikseen nostettuna
 - skenaariot sille, paljonko maksettavaa jää jos oikeusjutut voitetaan
+- kootut yhteystiedot maksuttomiin tukipalveluihin
 - velkalistan, anonymisoituna velkakohtaisesti (A–V)
 
 ## Sivut ja tiedostot
@@ -17,6 +18,7 @@ Näyttää:
 | --- | --- |
 | `index.html` | Etusivu: laskuri, edistyminen, oikeusprosessit, skenaariot, velkalista |
 | `minusta.html` | Kuka olen, miksi luvut ovat julkisia, mitä tämä ei ole |
+| `apua.html` | Maksuttomat tukipalvelut: peliongelma, velat, ulosotto, kriisiapu |
 | `yhteistyo.html` | Yhteistyöperiaatteet: kenen kanssa teen töitä ja kenen kanssa en |
 | `data.js` | **Kaikki luvut.** Jaettu kaikille sivuille |
 | `styles.css` | Jaetut tyylit |

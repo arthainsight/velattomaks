@@ -233,3 +233,19 @@
     .topbar{justify-content:center}
     .nav{justify-content:center}
   }
+
+  /* ---------- Apua-sivun palvelukortit ---------- */
+  .helpgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+  .help{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);
+    padding:24px 26px;box-shadow:var(--shadow);display:flex;flex-direction:column}
+  .help .t{font-family:'Fraunces',serif;font-weight:600;font-size:1.2rem;letter-spacing:-.01em}
+  .help .num{display:inline-block;margin-top:10px;font-family:'Fraunces',serif;font-size:1.75rem;
+    font-weight:600;color:var(--accent);text-decoration:none;letter-spacing:-.02em;line-height:1.15}
+  .help .num:hover{text-decoration:underline}
+  .help .when{margin-top:6px;font-size:.84rem;color:var(--ink-soft);font-weight:600}
+  .help p{margin-top:10px;color:var(--ink-soft);font-size:.95rem;line-height:1.6;flex:1}
+  .help .go{margin-top:14px;font-size:.9rem;font-weight:600;color:var(--accent);text-decoration:none}
+  .help .go:hover{text-decoration:underline}
+  .help.urgent{background:linear-gradient(135deg,var(--remain-soft),var(--paper-2))}
+  .help.urgent .num{color:var(--remain)}
+  .help.nophone .go{margin-top:12px}
